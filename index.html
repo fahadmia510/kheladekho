@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>স্পোর্টস হাব - লাইভ স্ট্রিমিং</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://vjs.zencdn.net/8.3.0/video-js.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-900 text-white font-sans">
+
+    <header class="bg-gray-800 p-4 text-center border-b border-gray-700 shadow-lg">
+        <h1 class="text-2xl font-bold text-yellow-500">🏆 Crystal Sports Live</h1>
+        <p class="text-xs text-gray-400 mt-1">আপনার প্রিয় খেলা দেখুন একদম ফ্রিতে</p>
+    </header>
+
+    <main class="container mx-auto p-4 max-w-4xl">
+        
+        <div class="bg-black rounded-lg overflow-hidden shadow-2xl mb-6 aspect-video">
+            <video id="live-player" class="video-js vjs-default-skin vjs-big-play-centered w-full h-full" controls preload="auto">
+                <source src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" type="application/x-mpegURL">
+                আপনার ব্রাউজারটি এই ভিডিও প্লেয়ার সাপোর্ট করে না।
+            </video>
+        </div>
+
+        <h2 class="text-xl font-semibold mb-4 text-gray-300">📺 চ্যানেল বা ম্যাচ সিলেক্ট করুন:</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+            
+            <button onclick="changeChannel('https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8', 'টেস্ট স্ট্রিম ১')" class="bg-gray-800 hover:bg-yellow-600 hover:text-black transition p-4 rounded-xl text-center font-medium border border-gray-700">
+                🎥 টেস্ট চ্যানেল ১
+            </button>
+
+            <button onclick="changeChannel('https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8', 'টেস্ট স্ট্রিম ২')" class="bg-gray-800 hover:bg-yellow-600 hover:text-black transition p-4 rounded-xl text-center font-medium border border-gray-700">
+                🎥 টেস্ট চ্যানেল ২
+            </button>
+
+            <button onclick="changeChannel('YOUR_LIVE_M3U8_LINK_HERE', 'লাইভ ম্যাচ')" class="bg-gray-800 hover:bg-yellow-600 hover:text-black transition p-4 rounded-xl text-center font-medium border border-gray-700">
+                ⚽ লাইভ ক্রিকেট/ফুটবল
+            </button>
+
+        </div>
+    </main>
+
+    <script src="https://vjs.zencdn.net/8.3.0/video.js"></script>
+
+    <script>
+        // ভিডিও প্লেয়ার ইনিশিয়ালাইজ করা
+        var player = videojs('live-player');
+
+        // চ্যানেল পরিবর্তন করার ফাংশন
+        function changeChannel(streamUrl, channelName) {
+            if(streamUrl === 'YOUR_LIVE_M3U8_LINK_HERE') {
+                alert('অনুগ্রহ করে কোডে আপনার সোর্স থেকে আনা আসল লাইভ .m3u8 লিংকটি বসান।');
+                return;
+            }
+            
+            player.src({
+                src: streamUrl,
+                type: 'application/x-mpegURL'
+            });
+            player.play();
+            console.log(channelName + " চালু হয়েছে।");
+        }
+    </script>
+</body>
+</html>
